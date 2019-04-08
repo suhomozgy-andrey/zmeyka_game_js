@@ -70,7 +70,8 @@ class Warm {
   }
 
   isInsideGameField(direction, canvas) {
-    const f = this.warmBody[this.warmBody.length - 1]
+    const f = this.warmBody[this.warmBody.length - 1];
+    // console.log(f, direction, canvas);
     if (direction === 1 && f.x > Math.round(canvas.width / this.dotSize) * this.dotSize) {
       return false;
     }

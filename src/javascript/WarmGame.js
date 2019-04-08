@@ -42,7 +42,9 @@ class WarmGame {
     // Draw red dot...
     this.dot.render();
 
-    if (this.warm.isSelfMeet()) this.gameover();
+    if (this.warm.isSelfMeet()) {
+      this.gameover();
+    }
 
     // Пересчитываем положение змейки
     if (this.direction === 1) this.warm.moveRight();
@@ -50,7 +52,9 @@ class WarmGame {
     if (this.direction === 3) this.warm.moveLeft();
     if (this.direction === 4) this.warm.moveTop();
 
-    if (!this.warm.isInsideGameField(this.direction, this.canvas)) this.gameover();
+    if (!this.warm.isInsideGameField(this.direction, this.canvas)) {
+      this.gameover();
+    }
 
     this.warm.warmBody.forEach((pob) => {
       if (pob.x === this.dot.coords[0] && pob.y === this.dot.coords[1]) {
@@ -78,6 +82,7 @@ class WarmGame {
     this.dot.setRandomPosition();
     this.direction = 1;
     this.score = 0;
+    this.speed = this.initialSpeed;
   }
 
   gameover() {

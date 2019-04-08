@@ -1,4 +1,4 @@
-import WarmGame from './javascript/_WarmGame';
+import WarmGame from './javascript/WarmGame';
 import 'normalize.css';
 import './styles/style.scss';
 

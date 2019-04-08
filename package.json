@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack-dev-server --env dev --mode none",
-    "build:prod": "webpack --env prod --mode production",
+    "build": "webpack --env prod --mode production",
     "build:watch": "webpack-dev-server --env dev --mode none"
   },
   "author": "suhomozgy.andrey",

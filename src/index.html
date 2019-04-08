@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zmeika Game</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+  </head>
+  <body>
+    <div class="zmeika">
+      <p><b>Игра "Змейка"</b></p>
+      <div class="zmeika__body">
+        <canvas id="zmeika" class="zmeika__canvas">
+          HTML 5 не поддерживется
+        </canvas>
+      </div>
+      <div class="zmeika__footer">
+        <div class="zmeika__score">
+          SCORE: <span id="score">0</span>
+        </div>
+        <div class="zmeika__level">
+          LEVEL: <span id="level">WARM</span>
+        </div>
+      </div>
+    </div>
+    <script defer src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+  </body>
+</html>

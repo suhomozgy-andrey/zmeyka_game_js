@@ -55,17 +55,22 @@ class Warm {
   }
 
   isSelfMeet() {
+    // var t0 = performance.now();
     let hasMeet = false;
+    const lastIndex = this.warmBody.length - 1;
+    const lastWarmDot = this.warmBody[lastIndex]
+
     this.warmBody.forEach((element, i) => {
       if (
-        element.x == this.warmBody[this.warmBody.length - 1].x &&
-        element.y == this.warmBody[this.warmBody.length - 1].y &&
-        i < this.warmBody.length - 1 &&
-        this.warmBody.length > 3
+        element.x === lastWarmDot.x &&
+        element.y === lastWarmDot.y &&
+        i < lastIndex &&
+        lastIndex > 4
       ) {
         hasMeet = true;
       }
     });
+    // var t1 = performance.now();
     return hasMeet;
   }
 

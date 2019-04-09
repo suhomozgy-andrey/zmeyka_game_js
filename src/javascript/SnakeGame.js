@@ -1,12 +1,11 @@
-import Warm from './Warm';
+import Snake from './Snake';
 import Dot from './Dot';
 
-class WarmGame {
+class SnakeGame {
   constructor({ canvas, fieldSize = 50, initialDirection = 1, initialBody = [{ x: 0, y: 0 }], speed = 200 }) {
     this.canvas = document.getElementById(canvas);
     this.fieldSize = fieldSize;
     this.direction = initialDirection;
-    this.warmBody = initialBody;
     this.dotSize = 10;
     this.initialSpeed = speed;
     this.speed = speed;
@@ -15,13 +14,13 @@ class WarmGame {
     this.intervalChange = () => { };
 
     this.dot = new Dot({ canvasContext: this.canvasContext, fieldSize: this.fieldSize });
-    this.warm = new Warm({ canvasContext: this.canvasContext });
+    this.snake = new Snake({ canvasContext: this.canvasContext, initialBody: initialBody });
   }
 
   init() {
     this.setCanvasSize();
     this.dot.init();
-    this.warm.init();
+    this.snake.init();
     this.onkeydownEventStart()
     this.startGame();
   }
@@ -42,24 +41,24 @@ class WarmGame {
     // Draw red dot...
     this.dot.render();
 
-    if (this.warm.isSelfMeet()) {
+    if (this.snake.isSelfMeet()) {
       this.gameover();
     }
 
     // Пересчитываем положение змейки
-    if (this.direction === 1) this.warm.moveRight();
-    if (this.direction === 2) this.warm.moveBottom();
-    if (this.direction === 3) this.warm.moveLeft();
-    if (this.direction === 4) this.warm.moveTop();
+    if (this.direction === 1) this.snake.moveRight();
+    if (this.direction === 2) this.snake.moveBottom();
+    if (this.direction === 3) this.snake.moveLeft();
+    if (this.direction === 4) this.snake.moveTop();
 
-    if (!this.warm.isInsideGameField(this.direction, this.canvas)) {
+    if (!this.snake.isInsideGameField(this.direction, this.canvas)) {
       this.gameover();
     }
 
-    this.warm.warmBody.forEach((pob) => {
+    this.snake.snakeBody.forEach((pob) => {
       if (pob.x === this.dot.coords[0] && pob.y === this.dot.coords[1]) {
         this.dot.setRandomPosition();
-        this.warm.addNewPart();
+        this.snake.addNewDot();
         this.score = this.score + 1;
         this.renderScore();
 
@@ -69,7 +68,7 @@ class WarmGame {
           this.renderGame();
         }, this.speed);
       }
-      this.warm.renderWarmDot(pob);
+      this.snake.renderSnakeDot(pob);
     });
   }
 
@@ -78,7 +77,7 @@ class WarmGame {
     this.intervalChange = setInterval(() => {
       this.renderGame();
     }, this.initialSpeed);
-    this.warm.resetBody();
+    this.snake.resetBody();
     this.dot.setRandomPosition();
     this.direction = 1;
     this.score = 0;
@@ -111,4 +110,4 @@ class WarmGame {
   }
 }
 
-export default WarmGame;
+export default SnakeGame;

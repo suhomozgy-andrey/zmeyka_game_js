@@ -55,7 +55,6 @@ class Snake {
   }
 
   isSelfMeet() {
-    // var t0 = performance.now();
     let hasMeet = false;
     const lastIndex = this.snakeBody.length - 1;
     const lastWarmDot = this.snakeBody[lastIndex]
@@ -70,13 +69,11 @@ class Snake {
         hasMeet = true;
       }
     });
-    // var t1 = performance.now();
     return hasMeet;
   }
 
   isInsideGameField(direction, canvas) {
     const f = this.snakeBody[this.snakeBody.length - 1];
-    // console.log(f, direction, canvas);
     if (direction === 1 && f.x > Math.round(canvas.width / this.dotSize) * this.dotSize) {
       return false;
     }

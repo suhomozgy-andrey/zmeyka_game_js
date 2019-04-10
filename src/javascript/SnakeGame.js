@@ -32,10 +32,10 @@ class SnakeGame {
   }
 
   renderGame() {
-    // Clear game field...
+    // Clear game field
     this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Set dot coordinates randomly inside canvas...
+    // Set dot coordinates randomly inside canvas
     if (this.dot.coords[0] + this.dotSize >= this.canvas.width || this.dot.coords[1] + this.dotSize >= this.canvas.height) this.dot.setRandomPosition();
 
     // Draw red dot...
@@ -45,12 +45,13 @@ class SnakeGame {
       this.gameover();
     }
 
-    // Пересчитываем положение змейки
+    // Rerender snake depending of direction
     if (this.direction === 1) this.snake.moveRight();
     if (this.direction === 2) this.snake.moveBottom();
     if (this.direction === 3) this.snake.moveLeft();
     if (this.direction === 4) this.snake.moveTop();
 
+    // If snake faced woth game field border need to reset game
     if (!this.snake.isInsideGameField(this.direction, this.canvas)) {
       this.gameover();
     }
@@ -102,10 +103,10 @@ class SnakeGame {
     onkeydown = (e) => {
       var k = e.keyCode;
       if ([38, 39, 40, 37].indexOf(k) >= 0) e.preventDefault();
-      if (k == 39 && this.direction != 3) this.direction = 1; //Вправо
-      if (k == 40 && this.direction != 4) this.direction = 2; //Вниз
-      if (k == 37 && this.direction != 1) this.direction = 3; //Влево
-      if (k == 38 && this.direction != 2) this.direction = 4; //Вверх
+      if (k == 39 && this.direction != 3) this.direction = 1; // Rigth
+      if (k == 40 && this.direction != 4) this.direction = 2; // Bottom
+      if (k == 37 && this.direction != 1) this.direction = 3; // Left
+      if (k == 38 && this.direction != 2) this.direction = 4; // Up
     };
   }
 }
